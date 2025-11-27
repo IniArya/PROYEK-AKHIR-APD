@@ -1,6 +1,6 @@
 from utils import clear_screen, tampilkan_header
 from data import produk
-from kasir import layanan_kasir 
+from kasir import layanan_kasir
 
 def menu_user(username):
     while True:
