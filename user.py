@@ -19,7 +19,6 @@ def menu_user(username):
             tampilkan_produk(produk)
             input("\nTekan Enter untuk kembali...")
         elif pilih == "2":
-            # Pass True for logged-in users (get member discount)
             layanan_kasir(is_member_default=True)
         elif pilih == "3":
             break

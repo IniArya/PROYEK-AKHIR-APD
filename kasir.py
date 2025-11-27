@@ -3,7 +3,6 @@ from utils import clear_screen
 from data import produk
 
 def tampilkan_produk():
-    """Menampilkan daftar produk dengan format rapi."""
     print("=== DAFTAR PRODUK ===")
     print("-" * 40)
     for id_produk, data in produk.items():
@@ -11,11 +10,9 @@ def tampilkan_produk():
     print("-" * 40)
 
 def hitung_total(keranjang):
-    """Menghitung total harga dari semua produk di keranjang."""
     return sum(item["harga"] for item in keranjang)
 
 def tampilkan_keranjang(keranjang):
-    """Menampilkan isi keranjang belanja."""
     if not keranjang:
         print("Keranjang masih kosong.")
         return
@@ -24,7 +21,6 @@ def tampilkan_keranjang(keranjang):
         print(f"{i}. {item['nama']} - Rp{item['harga']:,}")
 
 def struk_belanja(keranjang, uang_dibayar, diskon_member=0, diskon_belanja=0):
-    """Menampilkan struk belanja dengan diskon member dan diskon belanja besar."""
     clear_screen()
     print("=" * 40)
     print("         STRUK BELANJA")
@@ -55,7 +51,6 @@ def struk_belanja(keranjang, uang_dibayar, diskon_member=0, diskon_belanja=0):
     input("\nTekan Enter untuk kembali ke menu...")
 
 def simpan_struk_ke_file(keranjang, uang_dibayar, diskon_member=0, diskon_belanja=0):
-    """Simpan struk ke file txt dengan diskon member dan diskon belanja besar."""
     total = hitung_total(keranjang)
     total_diskon = 0
     if diskon_member > 0:
@@ -89,12 +84,6 @@ def simpan_struk_ke_file(keranjang, uang_dibayar, diskon_member=0, diskon_belanj
     print(f"Struk disimpan di: {nama_file}")
 
 def layanan_kasir(is_member_default=False):
-    """Fitur pelayanan kasir dengan sistem diskon member dan diskon belanja besar.
-    
-    Parameter:
-    - is_member_default (bool): True = user login (dapat diskon member 5%), 
-                                False = tamu (tidak dapat diskon member)
-    """
     keranjang = []
 
     while True:
@@ -116,7 +105,6 @@ def layanan_kasir(is_member_default=False):
             total = hitung_total(keranjang)
             print(f"\nTotal Belanja: Rp{total:,}")
 
-            # Sistem diskon member
             diskon_member = 0
             if is_member_default:
                 diskon_member = 5
@@ -126,7 +114,6 @@ def layanan_kasir(is_member_default=False):
                 print("\n✗ Anda belanja sebagai tamu (tanpa login)")
                 print("  Daftar & login untuk mendapatkan diskon member 5%!")
 
-            # Sistem diskon berdasarkan total belanja
             diskon_belanja = 0
             if total >= 500000:
                 diskon_belanja = 5
@@ -136,7 +123,6 @@ def layanan_kasir(is_member_default=False):
                 print(f"\n✗ Total belanja < Rp500.000")
                 print(f"  Belanja ≥ Rp500.000 untuk diskon tambahan 5%")
 
-            # Hitung total akhir dengan diskon
             total_diskon = int(total * (diskon_member + diskon_belanja) / 100)
             total_akhir = total - total_diskon
             
